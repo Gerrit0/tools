@@ -1,0 +1,25 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/nearley": "^2.11.0",
+    "@types/tape": "^4.2.33",
+    "nearley": "^2.16.0",
+    "tap-dot": "^2.0.0",
+    "tape": "^4.10.1",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.12.1",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "scripts": {
+    "prebuild": "nearleyc src/problems/grammar.ne -o src/problems/grammar.ts",
+    "build": "webpack -c webpack.config.js",
+    "test": "tape -r ts-node/register src/**/*.test.ts | tap-dot"
+  }
+}
