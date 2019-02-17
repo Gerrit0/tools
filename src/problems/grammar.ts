@@ -25,32 +25,27 @@ export type NearleySymbol = string | { literal: any } | { test: (token: any) => 
 export var Lexer: Lexer | undefined = undefined;
 
 export var ParserRules: NearleyRule[] = [
-    {"name": "main", "symbols": ["_", "problems", "_"], "postprocess": d => d[1]},
-    {"name": "problems$subexpression$1", "symbols": ["problem_range"]},
-    {"name": "problems$subexpression$1", "symbols": ["problem"]},
-    {"name": "problems", "symbols": ["problems$subexpression$1", "_", {"literal":","}, "_", "problems"], "postprocess": d => [d[0][0]].concat(d[4])},
-    {"name": "problems", "symbols": ["problem_range"]},
+    {"name": "main", "symbols": ["_", "problems"], "postprocess": d => d[1]},
     {"name": "problems", "symbols": ["problem"]},
-    {"name": "problem_range$subexpression$1", "symbols": [{"literal":"-"}]},
-    {"name": "problem_range$subexpression$1", "symbols": [{"literal":"−"}]},
-    {"name": "problem_range$subexpression$1", "symbols": [{"literal":"–"}]},
-    {"name": "problem_range$subexpression$1", "symbols": [{"literal":"—"}]},
-    {"name": "problem_range$subexpression$1", "symbols": [{"literal":"―"}]},
-    {"name": "problem_range", "symbols": ["number", "_", "problem_range$subexpression$1", "_", "number"], "postprocess": d => ({ range: [d[0], d[4]] })},
-    {"name": "problem", "symbols": ["number", "modifiers"], "postprocess": ([value, parts ]) => ({ value, parts })},
-    {"name": "modifiers$ebnf$1", "symbols": []},
-    {"name": "modifiers$ebnf$1", "symbols": ["modifiers$ebnf$1", "modifier"], "postprocess": (d) => d[0].concat([d[1]])},
-    {"name": "modifiers", "symbols": ["modifiers$ebnf$1"], "postprocess": id},
-    {"name": "modifiers$ebnf$2", "symbols": ["modifier"]},
-    {"name": "modifiers$ebnf$2", "symbols": ["modifiers$ebnf$2", "modifier"], "postprocess": (d) => d[0].concat([d[1]])},
-    {"name": "modifiers", "symbols": ["modifiers", "_", {"literal":","}, "_", "modifiers$ebnf$2"], "postprocess": d => d[0].concat(d[4])},
-    {"name": "modifier", "symbols": [/[a-z]/], "postprocess": id},
+    {"name": "problems", "symbols": ["problem_range"]},
+    {"name": "problems$subexpression$1", "symbols": ["problem"]},
+    {"name": "problems$subexpression$1", "symbols": ["problem_range"]},
+    {"name": "problems", "symbols": ["problems", "_", {"literal":","}, "_", "problems$subexpression$1"], "postprocess": d => d[0].concat(d[4])},
+    {"name": "problem$ebnf$1", "symbols": ["parts"], "postprocess": id},
+    {"name": "problem$ebnf$1", "symbols": [], "postprocess": () => null},
+    {"name": "problem", "symbols": ["number", "_", "problem$ebnf$1"], "postprocess": ([value, _, parts]) => ({ value, parts: parts || [] })},
+    {"name": "problem_range", "symbols": ["number", "_", {"literal":"-"}, "_", "number"], "postprocess": d => ({ range: [d[0], d[4]] })},
+    {"name": "parts", "symbols": ["part"], "postprocess": id},
+    {"name": "parts", "symbols": ["parts", "_", {"literal":","}, "_", "part"], "postprocess": d => d[0].concat(d[4])},
+    {"name": "part$ebnf$1", "symbols": [/[a-z]/]},
+    {"name": "part$ebnf$1", "symbols": ["part$ebnf$1", /[a-z]/], "postprocess": (d) => d[0].concat([d[1]])},
+    {"name": "part", "symbols": ["part$ebnf$1"], "postprocess": id},
     {"name": "number$ebnf$1", "symbols": [/[0-9]/]},
     {"name": "number$ebnf$1", "symbols": ["number$ebnf$1", /[0-9]/], "postprocess": (d) => d[0].concat([d[1]])},
     {"name": "number", "symbols": ["number$ebnf$1"], "postprocess": d => +d[0].join('')},
     {"name": "_$ebnf$1", "symbols": []},
-    {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", /[ \t]/], "postprocess": (d) => d[0].concat([d[1]])},
-    {"name": "_", "symbols": ["_$ebnf$1"]}
+    {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", /[\s]/], "postprocess": (d) => d[0].concat([d[1]])},
+    {"name": "_", "symbols": ["_$ebnf$1"], "postprocess": () => null}
 ];
 
 export var ParserStart: string = "main";

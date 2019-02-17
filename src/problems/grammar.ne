@@ -3,25 +3,23 @@
 
 @preprocessor typescript
 
-main -> _ problems _ {% d => d[1] %}
+main -> _ problems {% d => d[1] %}
 
 problems ->
-    (problem_range|problem) _ "," _ problems {% d => [d[0][0]].concat(d[4]) %}
-  | problem_range
-  | problem
+    problem # No id since we want the problem to be in an array
+  | problem_range # ditto
+  | problems _ "," _ (problem|problem_range) {% d => d[0].concat(d[4]) %}
 
-problem_range ->
-  number _ ("-"|"−"|"–"|"—"|"―") _ number {% d => ({ range: [d[0], d[4]] }) %}
+problem -> number _ parts:? {% ([value, _, parts]) => ({ value, parts: parts || [] }) %}
 
-problem -> number modifiers {% ([value, parts ]) => ({ value, parts }) %}
+problem_range -> number _ "-" _ number {% d => ({ range: [d[0], d[4]] }) %}
 
-modifiers ->
-  modifier:* {% id %}
-  | modifiers _ "," _ modifier:+ {% d => d[0].concat(d[4]) %}
+parts ->
+    part {% id %}
+  | parts _ "," _ part {% d => d[0].concat(d[4]) %}
 
-modifier -> [a-z] {% id %}
+part -> [a-z]:+ {% id %}
 
 number -> [0-9]:+ {% d => +d[0].join('') %}
 
-_ -> [ \t]:*
-
+_ -> [\s]:* {% () => null %}
