@@ -66,8 +66,8 @@ export function buildPage (text: string): string {
   const map: {[k: string]: string | number} = {
     problems: buildProblems(text),
     year: handInDate.getFullYear(),
-    month: handInDate.getMonth() + 1,
-    day: handInDate.getDate()
+    month: (handInDate.getMonth() + 1).toString().padStart(2, '0'),
+    day: handInDate.getDate().toString().padStart(2, '0')
   }
 
   return template.replace(/%(\w+)%/g, (_, key) => {
