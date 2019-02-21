@@ -178,6 +178,10 @@ function buildProblem (problem: Problem): string[] {
 }
 
 function buildMergedProblem (required: Problem, suggested: Problem): string[] {
+  if (required.parts.length === 0) {
+    return [...buildProblem(required), '']
+  }
+
   const suggestedParts = suggested.parts.length ?
     suggested.parts.filter(p => !required.parts.includes(p)) :
     getPartsExcept(required.parts)

@@ -61,7 +61,8 @@ const textCases: { [k: string]: [string, string] } = {
   'Number': ['1', `\\problem{1}\n`],
   'Suggested': ['Suggested: 1\nHand in: 2', `\\begin{suggested}\n\\problem{1}\n\\end{suggested}\n\n\\problem{2}\n`],
   'Merged': ['Suggested: 1ab, e\nHand in: 1cd', mergedCase],
-  'Merged without parts': ['Suggested: 1\nHand in: 1cd', mergedCase.replace('\\setcounter{enumi}{4}\n\\item\n', '')]
+  'Merged without parts': ['Suggested: 1\nHand in: 1cd', mergedCase.replace('\\setcounter{enumi}{4}\n\\item\n', '')],
+  'In both': ['Suggested: 1\nHand in: 1', '\\problem{1}\n']
 }
 
 for (const [name, [input, output]] of Object.entries(textCases)) {
