@@ -4,6 +4,7 @@ const select = document.querySelector('select')!
 const input = document.querySelector('textarea')!
 const output = document.querySelector('.right') as HTMLDivElement
 const copyBox = document.querySelector('input[type=checkbox]') as HTMLInputElement
+const copyButton = document.querySelector('button')!
 
 let transform: (input: string) => string = tools[0].transform
 
@@ -47,3 +48,7 @@ function runTransform () {
     output.textContent = err.message
   }
 }
+
+copyBox.addEventListener('click', () => {
+  navigator.clipboard.writeText(output.textContent || '').catch(console.error)
+})
