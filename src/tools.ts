@@ -1,6 +1,7 @@
 import { buildPage } from './problems/problems'
 import { buildTrueFalse } from './truefalse'
 import { buildTable } from './table'
+import { stripCopy } from './copy'
 
 export interface Tool {
   name: string
@@ -23,5 +24,10 @@ export const tools: Tool[] = [
     name: 'Table',
     transform: buildTable,
     placeholder: 'a b ~a|b\nT T T'
+  },
+  {
+    name: 'Strip Kindle Copy',
+    transform: stripCopy,
+    placeholder: ''
   }
 ]
