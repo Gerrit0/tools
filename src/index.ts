@@ -49,6 +49,6 @@ function runTransform () {
   }
 }
 
-copyBox.addEventListener('click', () => {
+copyButton.addEventListener('click', () => {
   navigator.clipboard.writeText(output.textContent || '').catch(console.error)
 })
