@@ -144,6 +144,7 @@ export function buildProblems (text: string): string {
     suggestedIndex++
   }
 
+  endSuggested()
   return result.join('\n')
 }
 
