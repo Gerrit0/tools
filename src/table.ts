@@ -1,11 +1,11 @@
 function toLatexSymbols (s: string) {
-  return '$' + s.replace(/~|&|\||c|t|<>|>/g, v => {
+  return '$' + s.replace(/~|&|\||\\c|\\t|<>|>/g, v => {
     return ({
       '~': '\\sim ',
       '&': '\\wedge ',
       '|': '\\vee ',
-      'c': '\\textbf{c}',
-      't': '\\textbf{t}',
+      '\\c': '\\textbf{c}',
+      '\\t': '\\textbf{t}',
       '>': '\\rightarrow ',
       '<>': '\\leftrightarrow '
     } as { [k: string]: string })[v]
