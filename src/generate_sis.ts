@@ -41,5 +41,5 @@ export function generateSi (text: string): string {
 
   return '\\begin{align*}\n' + result.map((row, i) => {
     return `S^{${Math.floor(i / 2)}}${i % 2 ? '_1' : ''} &= \\{ ${row.map(r => `(${r[0]}, ${r[1]})`).join(', ')} \\}`
-  }).join('\\\\\n') + '\\end{align*}'
+  }).join('\\\\\n') + '\n\\end{align*}'
 }
