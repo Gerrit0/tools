@@ -27,8 +27,6 @@ export function generateSi (text: string): string {
 
   const result: [number, number][][] = [[ [0, 0] ]]
 
-  console.log(pw)
-
   for (let i = 0; i < pw.length; i++) {
     const item = pw[i]
     // Generate S^i_1
