@@ -10,9 +10,7 @@ const template = `
 \\documentclass[12pt]{article}
 \\pagestyle{empty}
 \\usepackage[left=2cm,right=2cm,top=1cm,bottom=2cm,nohead,nofoot]{geometry}
-\\usepackage{amsmath}
-\\usepackage{amssymb}
-\\usepackage{arydshln}
+\\usepackage{amsmath,amssymb,amsthm,arydshln}
 % List spacing
 \\usepackage[shortlabels]{enumitem}
 \\setlist[enumerate]{topsep=0pt}
