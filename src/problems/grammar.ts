@@ -30,7 +30,7 @@ export var ParserRules: NearleyRule[] = [
     {"name": "problems", "symbols": ["problem_range"]},
     {"name": "problems$subexpression$1", "symbols": ["problem"]},
     {"name": "problems$subexpression$1", "symbols": ["problem_range"]},
-    {"name": "problems", "symbols": ["problems", {"literal":","}, "_", "problems$subexpression$1"], "postprocess": d => d[0].concat(d[4])},
+    {"name": "problems", "symbols": ["problems", {"literal":","}, "_", "problems$subexpression$1"], "postprocess": d => d[0].concat(d[3])},
     {"name": "problem$ebnf$1", "symbols": ["parts"], "postprocess": id},
     {"name": "problem$ebnf$1", "symbols": [], "postprocess": () => null},
     {"name": "problem", "symbols": ["number", "_", "problem$ebnf$1"], "postprocess": ([value, _, parts]) => ({ value, parts: parts || [] })},

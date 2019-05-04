@@ -20,6 +20,7 @@
   "scripts": {
     "prebuild": "nearleyc src/problems/grammar.ne -o src/problems/grammar.ts",
     "build": "webpack -c webpack.config.js",
+    "pretest": "yarn prebuild",
     "test": "tape -r ts-node/register src/**/*.test.ts | tap-dot"
   }
 }

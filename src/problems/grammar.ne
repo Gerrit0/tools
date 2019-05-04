@@ -8,7 +8,7 @@ main -> _ problems {% d => d[1] %}
 problems ->
     problem # No id since we want the problem to be in an array
   | problem_range # ditto
-  | problems "," _ (problem|problem_range) {% d => d[0].concat(d[4]) %}
+  | problems "," _ (problem|problem_range) {% d => d[0].concat(d[3]) %}
 
 problem -> number _ parts:? {% ([value, _, parts]) => ({ value, parts: parts || [] }) %}
 
