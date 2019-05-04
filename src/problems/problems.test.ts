@@ -16,7 +16,8 @@ const cases: { [k: string]: [string, Problem[]] } = {
     ]
   ],
   'Empty input': ['', []],
-  'Whitespace': ['  1,   3  ', [{ value: 1, parts: [] }, { value: 3, parts: [] }]]
+  'Whitespace': ['  1,   3  ', [{ value: 1, parts: [] }, { value: 3, parts: [] }]],
+  'Whitespace after a number but before a comma': ['3, 4', [{ value: 3, parts: [] }, { value: 4, parts: [] }]]
 }
 
 for (const [name, [input, output]] of Object.entries(cases)) {
