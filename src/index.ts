@@ -21,15 +21,6 @@ select.addEventListener('change', () => {
   selectTool(tools.find(t => t.name === select.value)!)
 })
 
-declare global {
-  interface Navigator {
-    clipboard: {
-      writeText (text: string): Promise<string>,
-      readText (): Promise<string>
-    }
-  }
-}
-
 input.addEventListener('input', runTransform)
 
 function selectTool (tool: Tool) {

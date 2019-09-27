@@ -2,7 +2,8 @@ import { buildPage } from './problems/problems'
 import { buildTrueFalse } from './truefalse'
 import { buildTable, buildMathTable } from './table'
 import { stripCopy } from './copy'
-import { generateSi } from './generate_sis';
+import { generateSi } from './generate_sis'
+import { buildPowerSet } from './powerset/powerset'
 
 export interface Tool {
   name: string
@@ -15,6 +16,11 @@ export const tools: Tool[] = [
     name: 'Discrete Problems',
     transform: buildPage,
     placeholder: 'Suggested: 1, 2, 5-10\nHand in: 2b, 6'
+  },
+  {
+    name: 'Power Set',
+    transform: buildPowerSet,
+    placeholder: '{ 1, 2, 3 } or { (1, 2), 3 }'
   },
   {
     name: 'True / False',
