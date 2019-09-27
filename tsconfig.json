@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "target": "es2018",
     "lib": ["dom", "esnext"],
     "outDir": "dist"
   },
