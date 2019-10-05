@@ -23,7 +23,6 @@ export function dfaToGraph (text: string): string {
   const accept = first.replace(/^\{|\}$/g, '').split(',')
   const seen = new Set<string>()
   const machine = parseMachine(rest.filter(Boolean))
-  console.log(machine)
 
   for (const [from, transitions] of machine) {
     if (!seen.has(from)) {

@@ -20,7 +20,11 @@
   "scripts": {
     "prebuild": "powershell ./scripts/prebuild.ps1",
     "build": "webpack -c webpack.config.js",
+    "build-scripts": "tsc",
     "pretest": "yarn prebuild",
     "test": "tape -r ts-node/register src/**/*.test.ts | tap-dot"
+  },
+  "dependencies": {
+    "fast-glob": "^3.0.4"
   }
 }
