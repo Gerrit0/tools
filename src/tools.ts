@@ -5,6 +5,7 @@ import { stripCopy } from './copy'
 import { generateSi } from './generate_sis'
 import { buildPowerSet } from './powerset/powerset'
 import { dfaToGraph } from './dfa_to_graph'
+import { pdaToGraph } from './pda_to_graph'
 
 export interface Tool {
   name: string
@@ -22,6 +23,11 @@ export const tools: Tool[] = [
     name: 'DFA to Graphviz Digraph',
     transform: dfaToGraph,
     placeholder: '{2}\n0,0,0\n0,1,0\n0,0,1\n1,0,2'
+  },
+  {
+    name: 'PDA to Graphviz Digraph',
+    transform: pdaToGraph,
+    placeholder: '{4}\n(0,`,`)->(1,$)\n...'
   },
   {
     name: 'Power Set',
