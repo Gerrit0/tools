@@ -20,6 +20,11 @@ export const tools: Tool[] = [
     placeholder: 'Suggested: 1, 2, 5-10\nHand in: 2b, 6'
   },
   {
+    name: 'Sort lines',
+    transform: text => text.split('\n').sort((a, b) => a.localeCompare(b, 'standard', { sensitivity: 'base' })).join('\n'),
+    placeholder: 'b\na'
+  },
+  {
     name: 'DFA to Graphviz Digraph',
     transform: dfaToGraph,
     placeholder: '{2}\n0,0,0\n0,1,0\n0,0,1\n1,0,2'
