@@ -214,7 +214,7 @@ export interface Range {
 }
 
 export function buildList (text: string): Problem[] {
-  const parser = new Parser(Grammar.fromCompiled(grammar))
+  const parser = new Parser(Grammar.fromCompiled(grammar as any))
 
   parser.feed(text)
 

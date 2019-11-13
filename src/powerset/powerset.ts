@@ -34,7 +34,7 @@ export function parsedToString (el: string | Element): string {
 }
 
 export function parseText (text: string): ParsedSet {
-  const parser = new Parser(Grammar.fromCompiled(grammar))
+  const parser = new Parser(Grammar.fromCompiled(grammar as any))
   parser.feed(text)
   const results = parser.results as ParsedSet[]
 
