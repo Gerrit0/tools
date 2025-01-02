@@ -1,67 +1,35 @@
-import { buildPage } from './problems/problems'
-import { buildTrueFalse } from './truefalse'
-import { buildTable, buildMathTable } from './table'
-import { stripCopy } from './copy'
-import { generateSi } from './generate_sis'
-import { buildPowerSet } from './powerset/powerset'
-import { dfaToGraph } from './dfa_to_graph'
-import { pdaToGraph } from './pda_to_graph'
+import { stripCopy } from "./copy";
 
 export interface Tool {
-  name: string
-  placeholder: string
-  transform: (text: string) => string
+    name: string;
+    placeholder: string;
+    transform: (text: string) => string;
 }
 
 export const tools: Tool[] = [
-  {
-    name: 'Discrete Problems',
-    transform: buildPage,
-    placeholder: 'Suggested: 1, 2, 5-10\nHand in: 2b, 6'
-  },
-  {
-    name: 'Sort lines',
-    transform: text => text.split('\n').sort((a, b) => a.localeCompare(b, 'standard', { sensitivity: 'base' })).join('\n'),
-    placeholder: 'b\na'
-  },
-  {
-    name: 'DFA to Graphviz Digraph',
-    transform: dfaToGraph,
-    placeholder: '{2}\n0,0,0\n0,1,0\n0,0,1\n1,0,2'
-  },
-  {
-    name: 'PDA to Graphviz Digraph',
-    transform: pdaToGraph,
-    placeholder: '{4}\n(0,`,`)->(1,$)\n...'
-  },
-  {
-    name: 'Power Set',
-    transform: buildPowerSet,
-    placeholder: '{ 1, 2, 3 } or { (1, 2), 3 }'
-  },
-  {
-    name: 'True / False',
-    transform: buildTrueFalse,
-    placeholder: '1'
-  },
-  {
-    name: 'Table',
-    transform: buildTable,
-    placeholder: 'a b ~a|b\nT T T'
-  },
-  {
-    name: 'Math Table',
-    transform: buildMathTable,
-    placeholder: 'Cost(V_4,7) 7\nCost(V_4,8) 3'
-  },
-  {
-    name: 'Build S^i arrays',
-    transform: generateSi,
-    placeholder: 'w_i\np_i'
-  },
-  {
-    name: 'Strip Kindle Copy',
-    transform: stripCopy,
-    placeholder: ''
-  }
-]
+    {
+        name: "Sort lines",
+        transform: text =>
+            text.split("\n").sort((a, b) => a.localeCompare(b, "standard", { sensitivity: "base" })).join("\n"),
+        placeholder: "b\na",
+    },
+    {
+        name: "Unique lines",
+        transform: text => {
+            const seen = new Set();
+            const result = [];
+            for (const line of text.split("\n")) {
+                if (seen.has(line)) continue;
+                seen.add(line);
+                result.push(line);
+            }
+            return result.join("\n");
+        },
+        placeholder: "a\nb\na",
+    },
+    {
+        name: "Strip Kindle Copy",
+        transform: stripCopy,
+        placeholder: "",
+    },
+];
